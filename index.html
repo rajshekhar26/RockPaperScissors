@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rock Paper Scissors</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito&family=Secular+One&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<h1 id="title">Rock Paper Scissors</h1>
+		</header>
+		<button id="reset" class="button">New Game</button>
+		<div>
+			<img id="rock" class="rps" alt="rock" src="images/rock.png" />
+			<img id="paper" class="rps" alt="paper" src="images/paper.png" />
+			<img
+				id="scissors"
+				class="rps"
+				alt="scissors"
+				src="images/scissors.png"
+			/>
+		</div>
+		<div id="box">
+			<div class="container">
+				<h3>You</h3>
+				<p id="playerscore">0</p>
+			</div>
+			<div class="container">
+				<h3>Bot</h3>
+				<p id="computerscore">0</p>
+			</div>
+		</div>
+		<div>
+			<p id="roundnumber"></p>
+			<p id="roundresult"></p>
+			<p id="roundselection"></p>
+		</div>
+		<h2 id="resultgame"></h2>
+
+		<script src="script.js"></script>
+	</body>
+</html>
