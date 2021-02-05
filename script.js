@@ -42,7 +42,7 @@ const displayWinner = () => {
 const resetProgress = () => {
 	computerScore = 0;
 	playerScore = 0;
-	roundNumber.textContent = '';
+	roundNumber.textContent = 'Round 0';
 	roundResult.textContent = '';
 	roundSelection.textContent = '';
 	resultGame.textContent = '';

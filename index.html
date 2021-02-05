@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Rock Paper Scissors</title>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Nunito&family=Secular+One&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Secular+One&display=swap"
 			rel="stylesheet"
 		/>
 		<link rel="stylesheet" href="style.css" />
@@ -13,8 +14,8 @@
 	<body>
 		<header>
 			<h1 id="title">Rock Paper Scissors</h1>
+			<button id="reset" class="button">New Game</button>
 		</header>
-		<button id="reset" class="button">New Game</button>
 		<div>
 			<img id="rock" class="rps" alt="rock" src="images/rock.png" />
 			<img id="paper" class="rps" alt="paper" src="images/paper.png" />
@@ -26,19 +27,21 @@
 			/>
 		</div>
 		<div id="box">
-			<div class="container">
-				<h3>You</h3>
-				<p id="playerscore">0</p>
+			<div class="container-score">
+				<div class="score">
+					<h3>You</h3>
+					<p id="playerscore">0</p>
+				</div>
+				<div class="score">
+					<h3>Bot</h3>
+					<p id="computerscore">0</p>
+				</div>
 			</div>
-			<div class="container">
-				<h3>Bot</h3>
-				<p id="computerscore">0</p>
+			<div class="container-info">
+				<h3 id="roundnumber">Round 0</h3>
+				<p id="roundresult"></p>
+				<p id="roundselection"></p>
 			</div>
-		</div>
-		<div>
-			<p id="roundnumber"></p>
-			<p id="roundresult"></p>
-			<p id="roundselection"></p>
 		</div>
 		<h2 id="resultgame"></h2>
 
