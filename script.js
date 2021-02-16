@@ -6,23 +6,37 @@ const roundSelection = document.getElementById('roundselection');
 const yourScore = document.getElementById('playerscore');
 const compScore = document.getElementById('computerscore');
 const resultGame = document.getElementById('resultgame');
+let playerSelection;
+let computerSelection;
 let round = 0;
 let playerScore = 0;
 let computerScore = 0;
 
-// make computer play
 const computerPlay = () => {
 	let randomNumber = Math.floor(Math.random() * 3);
-	return randomNumber === 0
-		? 'rock'
-		: randomNumber === 1
-		? 'paper'
-		: 'scissors';
+	return !randomNumber ? 'rock' : randomNumber === 1 ? 'paper' : 'scissors';
 };
 
 const displayScore = () => {
 	yourScore.textContent = `${playerScore}`;
 	compScore.textContent = `${computerScore}`;
+};
+
+const playerWin = () => {
+	playerScore++;
+	roundResult.textContent = `You win!`;
+	roundSelection.textContent = `${playerSelection} beats ${computerSelection}`;
+};
+
+const computerWin = () => {
+	computerScore++;
+	roundResult.textContent = `You lose!`;
+	roundSelection.textContent = `${computerSelection} beats ${playerSelection}`;
+};
+
+const matchDraw = () => {
+	roundResult.textContent = `It's a draw!`;
+	roundSelection.textContent = `${computerSelection} draws ${playerSelection}`;
 };
 
 const displayWinner = () => {
@@ -39,43 +53,13 @@ const displayWinner = () => {
 	}
 };
 
-const resetProgress = () => {
-	computerScore = 0;
-	playerScore = 0;
-	roundNumber.textContent = 'Round 0';
-	roundResult.textContent = '';
-	roundSelection.textContent = '';
-	resultGame.textContent = '';
-	yourScore.textContent = 0;
-	compScore.textContent = 0;
-};
-
-// play a single round of rps
-const playRound = (playerSelection, computerSelection) => {
+const playRound = () => {
 	resultGame.textContent = '';
 	round++;
 	roundNumber.textContent = `Round ${round}`;
+};
 
-	const playerWin = () => {
-		playerScore++;
-		roundResult.textContent = `You win!`;
-		roundSelection.textContent = `${playerSelection} beats ${computerSelection}`;
-		displayScore();
-	};
-
-	const computerWin = () => {
-		computerScore++;
-		roundResult.textContent = `You lose!`;
-		roundSelection.textContent = `${computerSelection} beats ${playerSelection}`;
-		displayScore();
-	};
-
-	const matchDraw = () => {
-		roundResult.textContent = `It's a draw!`;
-		roundSelection.textContent = `${computerSelection} draws ${playerSelection}`;
-		displayScore();
-	};
-
+const getWinner = () => {
 	if (
 		(playerSelection === 'rock' && computerSelection === 'rock') ||
 		(playerSelection === 'paper' && computerSelection === 'paper') ||
@@ -95,15 +79,33 @@ const playRound = (playerSelection, computerSelection) => {
 	) {
 		playerWin();
 	}
-	displayWinner();
 };
 
-// run single round on button click
-rps.forEach((btn) =>
-	btn.addEventListener('click', (e) => {
-		playRound(`${e.target.id}`, computerPlay());
-	})
-);
+const resetProgress = () => {
+	computerScore = 0;
+	playerScore = 0;
+	roundNumber.textContent = 'Round 0';
+	roundResult.textContent = '';
+	roundSelection.textContent = '';
+	resultGame.textContent = '';
+	yourScore.textContent = 0;
+	compScore.textContent = 0;
+};
 
-// reset progress on button click
-reset.addEventListener('click', resetProgress);
+const startGame = () => {
+	rps.forEach((btn) =>
+		btn.addEventListener('click', (e) => {
+			playerSelection = e.target.id;
+			computerSelection = computerPlay();
+			playRound();
+			getWinner();
+			displayScore();
+			displayWinner();
+		})
+	);
+};
+
+reset.addEventListener('click', () => {
+	resetProgress();
+	startGame();
+});
