@@ -92,20 +92,15 @@ const resetProgress = () => {
 	compScore.textContent = 0;
 };
 
-const startGame = () => {
-	rps.forEach((btn) =>
-		btn.addEventListener('click', (e) => {
-			playerSelection = e.target.id;
-			computerSelection = computerPlay();
-			playRound();
-			getWinner();
-			displayScore();
-			displayWinner();
-		})
-	);
-};
+rps.forEach((btn) =>
+	btn.addEventListener('click', (e) => {
+		playerSelection = e.target.id;
+		computerSelection = computerPlay();
+		playRound();
+		getWinner();
+		displayScore();
+		displayWinner();
+	})
+);
 
-reset.addEventListener('click', () => {
-	resetProgress();
-	startGame();
-});
+reset.addEventListener('click', resetProgress);
